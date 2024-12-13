@@ -1,0 +1,12 @@
+name: fpt-unisast
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+      - "11434:11434"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
