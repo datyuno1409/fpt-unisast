@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		@apply h-full;
+		touch-action: pan-x pan-y;
+	}
+
+	@media (prefers-color-scheme: dark), (prefers-color-scheme: light) {
+		:root {
+			color-scheme: light;
+		}
+	}
+
+	* {
+		@apply m-0 box-border appearance-none p-0 focus:outline-none;
+	}
+
+	html {
+		@apply touch-pan-y;
+		scroll-behavior: smooth;
+		scroll-padding-top: 10rem;
+	}
+
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		@apply appearance-none;
+	}
+
+	input[type='number'] {
+		@apply appearance-none;
+		appearance: textfield;
+		-moz-appearance: textfield;
+	}
+
+	img {
+		@apply pointer-events-none select-none;
+	}
+}

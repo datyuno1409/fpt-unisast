@@ -1,0 +1,70 @@
+name: Build Templates
+
+on:
+    push:
+        branches:
+            - frontend
+    workflow_dispatch:
+
+permissions: write-all
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout from frontend branch
+              uses: actions/checkout@v4
+              with:
+                  ref: frontend
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '18'
+
+            - name: Cache node_modules
+              uses: actions/cache@v4
+              with:
+                  path: node_modules
+                  key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-
+
+            - name: Cài packages
+              run: npm install
+
+            - name: Build app
+              run: npm run build
+
+            - name: Check templates directory
+              run: |
+                  if [ ! -d "templates" ]; then
+                    echo "Error: templates directory not found!";
+                    exit 1;
+                  fi
+
+            - name: Backup files
+              run: mkdir -p ../backup && cp -r templates ../backup/
+
+            - name: Checkout main branch
+              uses: actions/checkout@v4
+              with:
+                  ref: main
+
+            - name: Cleanup old files
+              run: rm -rf templates
+
+            - name: Restore files
+              run: cp -r ../backup/* ./
+
+            - name: Setup Git info
+              run: |
+                  git config --global user.name "github-actions[bot]"
+                  git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+            - name: Push to main branch
+              run: |
+                  git add templates
+                  git commit -m "chore(templates): update built templates"
+                  git push origin main --force
