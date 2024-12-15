@@ -530,7 +530,7 @@ class FPTUniSAST(QMainWindow):
 
         try:
             documents_path = os.path.join(
-                str(Path.home()), "Documents", "unisast-app")
+                str(Path.home()), "Documents", "fpt-unisast")
 
             self.loading.show("Đang kiểm tra cập nhật...")
 
@@ -557,7 +557,7 @@ class FPTUniSAST(QMainWindow):
             self.show_message("Thành công", message)
             if "clone" in message:
                 os.chdir(os.path.join(str(Path.home()),
-                         "Documents", "unisast-app"))
+                         "Documents", "fpt-unisast"))
         else:
             self.show_message(
                 "Lỗi",
@@ -658,7 +658,7 @@ class FPTUniSAST(QMainWindow):
         try:
 
             repo_path = os.path.join(
-                str(Path.home()), "Documents", "unisast-app")
+                str(Path.home()), "Documents", "fpt-unisast")
             docker_compose_file = os.path.join(repo_path, "docker-compose.yml")
 
             if not os.path.exists(repo_path):
@@ -724,7 +724,7 @@ class FPTUniSAST(QMainWindow):
         self.loading.show("Đang thoát ứng dụng...")
 
         docker_compose_file = os.path.join(
-            str(Path.home()), "Documents", "unisast-app", "docker-compose.yml")
+            str(Path.home()), "Documents", "fpt-unisast", "docker-compose.yml")
         self.exit_worker = ExitWorker(docker_compose_file)
         self.exit_worker.finished.connect(self._exit_finished)
         self.exit_worker.progress.connect(self._exit_progress)
