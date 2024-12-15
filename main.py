@@ -248,7 +248,7 @@ class ExitWorker(QThread):
 
 
 class FPTUniSAST(QMainWindow):
-    HELP_URL = "https://www.facebook.com/@daihocfptdanang"
+    HELP_URL = "https://github.com/datyuno1409/fpt-unisast"
     REPO_URL = "https://github.com/datyuno1409/fpt-unisast.git"
     CHOCO_INSTALL_CMD = """powershell -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))" """
     GIT_INSTALL_PARAMS = """/GitAndUnixToolsOnPath /NoShellIntegration /NoGuiHereIntegration /NoShellHereIntegration /SChannel"""
