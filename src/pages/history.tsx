@@ -275,9 +275,6 @@ const History: React.FC = () => {
 												className='rounded-full p-2 text-gray-400 transition-all hover:bg-red-50 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2'
 <<<<<<< HEAD
 												title='Xóa kết quả quét!'
-=======
-												title='Xóa kết quả quét'
->>>>>>> 0809f904e58bbb0ba76e0f48fd87dc5f4cdaa19e
 											>
 												<FontAwesomeIcon
 													icon={faTrash}
